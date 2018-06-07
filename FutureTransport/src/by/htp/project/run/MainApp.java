@@ -12,6 +12,7 @@ import by.htp.project.entity.land.Scarab;
 import by.htp.project.entity.land.Teb;
 import by.htp.project.entity.undeground.Hyperloop;
 import by.htp.project.entity.undeground.SpeedSubway;
+import by.htp.project.logic.ArrayMethod;
 
 public class MainApp {
 
@@ -27,10 +28,12 @@ public class MainApp {
 		transport[3] = new Rail("Rail", 9830, 4, 16.5, 128, "12.03.2001", 450, "Malinovka", "Stepianka", false, 150, 14.2);
 		transport[4] = new Scarab("Rail", 9830, 4, 25.5, 128, "12.03.2001", 2, "Malinovka", "Stepianka", true, true);
 		transport[5] = new Teb("Teb", 9830, 4, 25.5, 128, "12.03.2001", 38, "Malinovka", "Stepianka", true, true);
-		transport[6] = new Bike("Bike", 9830, 4, 25.5, 128, "12.03.2001", 1, "Malinovka", "Stepianka", true, false);
-		transport[7] = new SkyTran("SkyTran", 1830, 0, 5.5, 30, "12.03.2016", 31, "Malinovka", "Stepianka", 10, true, true);
-		transport[8] = new FlyCar("SkyTran", 1830, 0, 5.5, 30, "12.03.2016", 31, "Malinovka", "Stepianka", 10, true);
-		transport[9] = new AeroSkeit("SkyTran", 1830, 0, 5.5, 30, "12.03.2016", 31, "Malinovka", "Stepianka", 10);
+		transport[6] = new Bike("Bike", 9830, 0, 25.5, 128, "12.03.2001", 1, "Malinovka", "Stepianka", true, false);
+		transport[7] = new SkyTran("SkyTran", 1830, 5, 5.5, 30, "12.03.2016", 31, "Malinovka", "Stepianka", 10, true, true);
+		transport[8] = new FlyCar("SkyTran", 1830, 3, 5.5, 30, "12.03.2016", 31, "Malinovka", "Stepianka", 10, true);
+		transport[9] = new AeroSkeit("SkyTran", 1830, 4, 5.5, 30, "12.03.2016", 31, "Malinovka", "Stepianka", 10);
+		
+		ArrayMethod.printListTransport(transport);
 
 	}
 	
