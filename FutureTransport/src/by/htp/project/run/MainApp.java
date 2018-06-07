@@ -2,7 +2,6 @@ package by.htp.project.run;
 
 import by.htp.project.entity.PassengerTrans;
 import by.htp.project.entity.air.AeroSkeit;
-import by.htp.project.entity.air.AirTrans;
 import by.htp.project.entity.air.FlyCar;
 import by.htp.project.entity.air.SkyTran;
 import by.htp.project.entity.land.Bike;
@@ -34,13 +33,12 @@ public class MainApp {
 		transport[9] = new AeroSkeit("SkyTran", 1830, 4, 5.5, 30, "12.03.2016", 31, "Malinovka", "Stepianka", 10);
 		
 		ArrayMethod.printListTransport(transport);
-		ArrayMethod.sortFlare(transport);
+		ArrayMethod.sortFare(transport);
 		System.out.println("Sort in fare:");
 		ArrayMethod.printListTransport(transport);
 		System.out.println("Sort in speed:");
 		ArrayMethod.sortSpeed(transport);
 		ArrayMethod.printListTransport(transport);
 
-	}
-	
+	}	
 }
