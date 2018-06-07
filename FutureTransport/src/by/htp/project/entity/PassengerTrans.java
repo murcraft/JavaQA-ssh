@@ -36,4 +36,12 @@ public class PassengerTrans extends Transport {
 		return false;
 	}
 	
+	public int getFare() {
+		return this.fare;
+	}
+
+	public int getCost() {
+		return this.cost;
+	}
+	
 }

@@ -34,6 +34,12 @@ public class MainApp {
 		transport[9] = new AeroSkeit("SkyTran", 1830, 4, 5.5, 30, "12.03.2016", 31, "Malinovka", "Stepianka", 10);
 		
 		ArrayMethod.printListTransport(transport);
+		ArrayMethod.sortFlare(transport);
+		System.out.println("Sort in fare:");
+		ArrayMethod.printListTransport(transport);
+		System.out.println("Sort in speed:");
+		ArrayMethod.sortSpeed(transport);
+		ArrayMethod.printListTransport(transport);
 
 	}
 	
