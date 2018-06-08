@@ -1,5 +1,7 @@
 package by.htp.project.entity.undeground;
 
+import by.htp.project.entity.addtables.StopPoint;
+
 public class Hyperloop extends UndegroundTrans {
 	private boolean isMagnetic;
 
@@ -7,7 +9,7 @@ public class Hyperloop extends UndegroundTrans {
 		super();
 	}
 
-	public Hyperloop(String name, int cost, int fare, double speedUp, double constructSpeed, String productionDate, int capacityOfPeople, String initialStop, String endingStop, double widthOfRail, boolean isMagnetic) {
+	public Hyperloop(String name, int cost, int fare, double speedUp, double constructSpeed, String productionDate, int capacityOfPeople, StopPoint initialStop, StopPoint endingStop, double widthOfRail, boolean isMagnetic) {
 		super(name, cost, fare, speedUp, constructSpeed, productionDate, capacityOfPeople, initialStop, endingStop, widthOfRail);
 		this.setMagnetic(isMagnetic);
 	}

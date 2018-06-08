@@ -1,6 +1,7 @@
 package by.htp.project.entity.land;
 
 import by.htp.project.entity.PassengerTrans;
+import by.htp.project.entity.addtables.StopPoint;
 
 public abstract class LandTrans extends PassengerTrans {
 	
@@ -11,7 +12,7 @@ public abstract class LandTrans extends PassengerTrans {
 	}
 
 	public LandTrans(String name, int cost, int fare, double speedUp, double constructSpeed, String productionDate,
-			int capacityOfPeople, String itialStop, String endingStop, boolean isWheeled) {
+			int capacityOfPeople, StopPoint itialStop, StopPoint endingStop, boolean isWheeled) {
 		super(name, cost, fare, speedUp, constructSpeed, productionDate, capacityOfPeople, itialStop, endingStop);
 		this.isWheeled = isWheeled;
 	}

@@ -1,5 +1,7 @@
 package by.htp.project.entity.air;
 
+import by.htp.project.entity.addtables.StopPoint;
+
 public class SkyTran extends AirTrans  {
 	
 	private boolean isSkyPod;
@@ -10,7 +12,7 @@ public class SkyTran extends AirTrans  {
 	}
 	
 	public SkyTran(String name, int cost, int fare, double speedUp, double constructSpeed, String productionDate,
-			int capacityOfPeople, String initialStop, String endingStop, double maxHgtAltitude, boolean isSkyPod, boolean isSelfDriven) {
+			int capacityOfPeople, StopPoint initialStop, StopPoint endingStop, double maxHgtAltitude, boolean isSkyPod, boolean isSelfDriven) {
 		super(name, cost, fare, speedUp, constructSpeed, productionDate, capacityOfPeople, initialStop, endingStop,
 				maxHgtAltitude);
 		this.setSelfDriven(isSelfDriven);

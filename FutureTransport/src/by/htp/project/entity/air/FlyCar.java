@@ -1,5 +1,7 @@
 package by.htp.project.entity.air;
 
+import by.htp.project.entity.addtables.StopPoint;
+
 public class FlyCar extends AirTrans{
 	
 	private boolean isMobile;
@@ -9,7 +11,7 @@ public class FlyCar extends AirTrans{
 	}
 
 	public FlyCar(String name, int cost, int fare, double speedUp, double constructSpeed, String productionDate,
-			int capacityOfPeople, String initialStop, String endingStop, double maxHgtAltitude, boolean isMobile) {
+			int capacityOfPeople, StopPoint initialStop, StopPoint endingStop, double maxHgtAltitude, boolean isMobile) {
 		super(name, cost, fare, speedUp, constructSpeed, productionDate, capacityOfPeople, initialStop, endingStop,
 				maxHgtAltitude);
 		this.setMobile(isMobile);

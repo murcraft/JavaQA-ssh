@@ -1,5 +1,7 @@
 package by.htp.project.entity.land;
 
+import by.htp.project.entity.addtables.StopPoint;
+
 public class Rail extends LandTrans {
 	
 	private double limitLength;
@@ -10,7 +12,7 @@ public class Rail extends LandTrans {
 	}
 
 	public Rail(String name, int cost, int fare, double speedUp, double constructSpeed, String productionDate,
-			int capacityOfPeople, String itialStop, String endingStop, boolean isWheeled, double limitLength, double widthOfRail) {
+			int capacityOfPeople, StopPoint itialStop, StopPoint endingStop, boolean isWheeled, double limitLength, double widthOfRail) {
 			super(name, cost, fare, speedUp, constructSpeed, productionDate, capacityOfPeople, itialStop, endingStop, isWheeled);
 			this.setLimitLength(limitLength);
 			this.setWidthOfRail(widthOfRail);

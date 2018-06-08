@@ -1,6 +1,7 @@
 package by.htp.project.entity.undeground;
 
 import by.htp.project.entity.PassengerTrans;
+import by.htp.project.entity.addtables.StopPoint;
 
 public class UndegroundTrans extends PassengerTrans {
 	
@@ -11,7 +12,7 @@ public class UndegroundTrans extends PassengerTrans {
 		super();
 	}
 
-	public UndegroundTrans(String name, int cost, int fare, double speedUp, double constructSpeed, String productionDate, int capacityOfPeople, String initialStop, String endingStop, double widthOfRail) {
+	public UndegroundTrans(String name, int cost, int fare, double speedUp, double constructSpeed, String productionDate, int capacityOfPeople, StopPoint initialStop, StopPoint endingStop, double widthOfRail) {
 		super(name, cost, fare, speedUp, constructSpeed, productionDate, capacityOfPeople, initialStop, endingStop);
 		this.widthOfRail = widthOfRail;
 	}
@@ -27,5 +28,4 @@ public class UndegroundTrans extends PassengerTrans {
 	public boolean isMovie() {
 		return false;
 	}
-
 }

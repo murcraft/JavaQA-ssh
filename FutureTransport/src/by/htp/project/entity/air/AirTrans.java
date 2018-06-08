@@ -1,6 +1,7 @@
 package by.htp.project.entity.air;
 
 import by.htp.project.entity.PassengerTrans;
+import by.htp.project.entity.addtables.StopPoint;
 
 public class AirTrans extends PassengerTrans{
 	
@@ -10,7 +11,7 @@ public class AirTrans extends PassengerTrans{
 		
 	}
 	
-	public AirTrans(String name, int cost, int fare, double speedUp, double constructSpeed, String productionDate, int capacityOfPeople, String initialStop, String endingStop, double maxHgtAltitude) {
+	public AirTrans(String name, int cost, int fare, double speedUp, double constructSpeed, String productionDate, int capacityOfPeople, StopPoint initialStop, StopPoint endingStop, double maxHgtAltitude) {
 		super(name, cost, fare, speedUp, constructSpeed, productionDate, capacityOfPeople, initialStop, endingStop);
 		this.setMaxHgtAltitude(maxHgtAltitude);
 	}
@@ -23,14 +24,21 @@ public class AirTrans extends PassengerTrans{
 		this.maxHgtAltitude = maxHgtAltitude;
 	}
 	
-//	@Override
-//	public abstract boolean isStartMovie();
-//	
-//	@Override
-//	public abstract boolean isEndMovie();
-//	
-//	@Override
-//	public abstract boolean isStopped();
+	public void fly() {
+		System.out.println("Flying");
+	}
+
+	public boolean isStartMovie() {
+		return false;
+	};
+	
+	public boolean isEndMovie() {
+		return false;
+	};
+	
+	public boolean isStopped() {
+		return false;
+	};
 	
 
 }
