@@ -11,16 +11,16 @@ public class PassengerTrans extends Transport {
 
 	}
 	
-	public PassengerTrans(String name, int cost, int fare, double speedUp, double constructSpeed, String productionDate, int capacityOfPeople, StopPoint initialStop, StopPoint endingStop) {
-		super(name, cost, speedUp, constructSpeed, productionDate, initialStop, endingStop);
+	public PassengerTrans(String name, int cost, int fare, double speedUp, double constructSpeed, String productionDate, int capacityOfPeople, StopPoint initialStop) {
+		super(name, cost, speedUp, constructSpeed, productionDate, initialStop);
 		this.fare = fare;
 		this.capacityOfPeople = capacityOfPeople;	
 	}
 	
 	
 	public String toString() {
-		return "[" + name + "] cost for one unit: " + cost + "$, " + "fare = " + fare + "$, " + "speedup is " + speedUp + ", construction speed = " + constructSpeed + ". Is prodused in " + productionDate +
-				", capacity is " + capacityOfPeople + " people. Leave from: " + initialStop + ", depart to " + endingStop;
+		return name + " | cost: " + cost + "$, " + "fare = " + fare + "$, " + "speedup is " + speedUp + " m/s2, constr. speed = " + constructSpeed + " m/s. Is produced in " + productionDate +
+				", capacity is " + capacityOfPeople + " people. Rout: " + initialStop + ".";
 	}
 	
 	public String getName() {

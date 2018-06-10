@@ -9,20 +9,18 @@ public abstract class Transport {
 	protected double constructSpeed;
 	protected String productionDate;
 	protected StopPoint initialStop;
-	protected StopPoint endingStop;
 	
 	public Transport() {
 		
 	}
 	
-	public Transport(String name, int cost, double speedUp, double constructSpeed, String productionDate,  StopPoint initialStop, StopPoint endingStop) {
+	public Transport(String name, int cost, double speedUp, double constructSpeed, String productionDate,  StopPoint initialStop) {
 		this.name = name;
 		this.cost = cost;
 		this.speedUp = speedUp;
 		this.constructSpeed = constructSpeed;
 		this.productionDate = productionDate;
 		this.initialStop = initialStop;
-		this.endingStop = endingStop;
 	}
 	
 	public abstract boolean isStartMovie();
@@ -59,16 +57,8 @@ public abstract class Transport {
 		this.initialStop = initialStop;
 	}
 
-	public StopPoint getEndingStop() {
-		return endingStop;
-	}
-
-	public void setEndingStop(StopPoint endingStop) {
-		this.endingStop = endingStop;
-	}
-
 	public String toString() {
-		return null;
+		return name + " | cost: " + cost + ", speed up: " + speedUp + ", construct speed: " + constructSpeed + ", produced: " + productionDate + ", rote: " + initialStop;
 	}
 	
 }

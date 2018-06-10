@@ -1,43 +1,59 @@
 package by.htp.project.entity.addtables;
 
 public class StopPoint {
-	private String name;
-	private static int amtStan = 5;
+	private String startPoint;
+	private String endPoint;
+	private String distance;
+	
+	private int counter;
 	
 	public StopPoint() {
 		
 	}
 	
-	public StopPoint(String name) {
-		this.setName(name);
-	}
-
-	private StopPoint [] stopPoints = new StopPoint[amtStan];
-	
-	public StopPoint[] getStations() {
-		return stopPoints;
-	}
-
-	public static int getAmtStan() {
-		return amtStan;
-	}
-
-	public void setAmtStantions(int amtStan) {
-		StopPoint.amtStan = amtStan;
+	public StopPoint(String startPoint, String endPoint, String distance) {
+		this.startPoint = startPoint;
+		this.endPoint = endPoint;
+		this.distance = distance;
 	}
 
 	public String getName() {
-		return name;
+		return startPoint;
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		this.startPoint = name;
+	}
+	
+	public String getDistance() {
+		return distance;
+	}
+
+	public void setDistance(String distance) {
+		this.distance = distance;
+	}
+
+	public String getEndPoint() {
+		return endPoint;
+	}
+
+	public void setEndPoint(String endPoint) {
+		this.endPoint = endPoint;
 	}
 	
 	@Override
 	public String toString() {
-		return  "\"" + name + "\"";
+		return startPoint + " to " + endPoint + " = " + distance + " km";
 	}
+
+	public int getCounter() {
+		return counter;
+	}
+
+	public void setCounter(int counter) {
+		this.counter = counter;
+	}
+
 
 
 }

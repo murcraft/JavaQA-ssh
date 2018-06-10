@@ -3,9 +3,7 @@ package by.htp.project.logic;
 import java.util.Scanner;
 
 import by.htp.project.entity.PassengerTrans;
-import by.htp.project.entity.addtables.PointDistance;
-import by.htp.project.entity.addtables.PointsMethod;
-import by.htp.project.entity.addtables.StopPoint;
+import by.htp.project.entity.addtables.ListPoint;
 
 public class User {
 	private String startPoint;
@@ -48,7 +46,7 @@ public class User {
 		}
 	}
 	
-	public static void showTranspToUser(int num, PassengerTrans[] transport, StopPoint [] stopPoints) {
+	public static void showTranspToUser(int num, PassengerTrans[] transport, ListPoint stopPoints, double avrSpeed[]) {
 		if(num == 1) {
 			System.out.println("Print transport:");
 			ArrayMethod.printListTransport(transport);
@@ -57,14 +55,12 @@ public class User {
 			ArrayMethod.sortFare(transport);
 			ArrayMethod.printListTransport(transport);
 		} else if(num == 3) {
-			System.out.println("Sort in speed:");
-			ArrayMethod.sortSpeed(transport);
+			System.out.println("Sort in average speed:");
+			ArrayMethod.sortAvrSpeed(transport, avrSpeed);
 			ArrayMethod.printListTransport(transport);
 		} else if(num == 4) {
 			System.out.println("Show stop points:");
-			PointsMethod.showStopPoints(stopPoints);
-			PointsMethod.printMatrix(PointDistance.distances, PointDistance.getColumn(), PointDistance.getLine());
-			
+			ListPoint.showStopPoints(stopPoints);
 		}
 		else {
 			System.out.println("Error command");
@@ -90,5 +86,36 @@ public class User {
 	public int getNum() {
 		return num;
 	}
+	
+	
+	
+//	public static void breakUser() {
+//		boolean flag = false;
+//		while(flag) {
+//			if()
+//		}
+//	}
+	
+	
+//	public static boolean showTranspToUser(int num, PassengerTrans[] transport, ListPoint stopPoints) {
+//		if(num == 1) {
+//			System.out.println("Print transport:");
+//			ArrayMethod.printListTransport(transport);
+//		} else if(num == 2) {				
+//			System.out.println("Sort in fare:");
+//			ArrayMethod.sortFare(transport);
+//			ArrayMethod.printListTransport(transport);
+//		} else if(num == 3) {
+//			System.out.println("Sort in speed:");
+//			ArrayMethod.sortSpeed(transport);
+//			ArrayMethod.printListTransport(transport);
+//		} else if(num == 4) {
+//			System.out.println("Show stop points:");
+//			ListPoint.showStopPoints(stopPoints);
+//		}
+//		else {
+//			System.out.println("Error command");
+//			}
+//	}
 
 }
