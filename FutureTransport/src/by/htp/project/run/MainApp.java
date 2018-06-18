@@ -3,18 +3,14 @@ package by.htp.project.run;
 import by.htp.project.entity.AirTrans;
 import by.htp.project.entity.LandTrans;
 import by.htp.project.entity.PassengerTrans;
-import by.htp.project.entity.Transport;
 import by.htp.project.entity.UndegroundTrans;
-import by.htp.project.entity.addtables.ListPoint;
-import by.htp.project.entity.addtables.PointsMethod;
-import by.htp.project.entity.addtables.StopPoint;
-import by.htp.project.logic.ArrayMethod;
+import by.htp.project.entity.points.ListPoint;
 import by.htp.project.logic.User;
 
 public class MainApp {
 
 	public static void main(String[] args) {
-//		final int amtStan = 10;
+
 		int amtTransp = 10;
 		int choise;
 		
@@ -51,7 +47,6 @@ public class MainApp {
 		choise = User.getUserCommand();
 		User.isTrueUserCommand(choise);
 		User.showTranspToUser(choise, transport, stopPoints, avrSpeed);
-		//ListPoint.showStopPoints(stopPoints);
 
 	}	
 	

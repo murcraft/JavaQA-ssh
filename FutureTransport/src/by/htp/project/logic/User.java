@@ -3,7 +3,7 @@ package by.htp.project.logic;
 import java.util.Scanner;
 
 import by.htp.project.entity.PassengerTrans;
-import by.htp.project.entity.addtables.ListPoint;
+import by.htp.project.entity.points.ListPoint;
 
 public class User {
 	private String startPoint;
@@ -17,6 +17,7 @@ public class User {
 				+ "\n4 - Show stop points with distanse.");
 	}
 	
+	@SuppressWarnings("resource")
 	public static int getUserNum() {
 		Scanner scanner = new Scanner(System.in);
 		int num = scanner.nextInt();
@@ -86,36 +87,5 @@ public class User {
 	public int getNum() {
 		return num;
 	}
-	
-	
-	
-//	public static void breakUser() {
-//		boolean flag = false;
-//		while(flag) {
-//			if()
-//		}
-//	}
-	
-	
-//	public static boolean showTranspToUser(int num, PassengerTrans[] transport, ListPoint stopPoints) {
-//		if(num == 1) {
-//			System.out.println("Print transport:");
-//			ArrayMethod.printListTransport(transport);
-//		} else if(num == 2) {				
-//			System.out.println("Sort in fare:");
-//			ArrayMethod.sortFare(transport);
-//			ArrayMethod.printListTransport(transport);
-//		} else if(num == 3) {
-//			System.out.println("Sort in speed:");
-//			ArrayMethod.sortSpeed(transport);
-//			ArrayMethod.printListTransport(transport);
-//		} else if(num == 4) {
-//			System.out.println("Show stop points:");
-//			ListPoint.showStopPoints(stopPoints);
-//		}
-//		else {
-//			System.out.println("Error command");
-//			}
-//	}
 
 }

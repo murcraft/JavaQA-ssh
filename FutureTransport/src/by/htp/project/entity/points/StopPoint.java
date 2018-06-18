@@ -1,11 +1,9 @@
-package by.htp.project.entity.addtables;
+package by.htp.project.entity.points;
 
 public class StopPoint {
 	private String startPoint;
 	private String endPoint;
 	private String distance;
-	
-	private int counter;
 	
 	public StopPoint() {
 		
@@ -45,16 +43,6 @@ public class StopPoint {
 	public String toString() {
 		return startPoint + " to " + endPoint + " = " + distance + " km";
 	}
-
-	public int getCounter() {
-		return counter;
-	}
-
-	public void setCounter(int counter) {
-		this.counter = counter;
-	}
-
-
-
+	
 }
 

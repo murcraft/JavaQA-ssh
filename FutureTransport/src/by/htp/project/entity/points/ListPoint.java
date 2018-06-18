@@ -1,4 +1,4 @@
-package by.htp.project.entity.addtables;
+package by.htp.project.entity.points;
 
 public class ListPoint {
 	
@@ -25,10 +25,6 @@ public class ListPoint {
 			return stopP[nElems];
 		}
 			return null;
-	}
-	
-	public void displayStopPoint() {
-		
 	}
 
 	public StopPoint[] getStopP() {
@@ -60,7 +56,6 @@ public class ListPoint {
 			System.out.println(stopPoints.getListPoint(i));
 		}
 	}
-	
 	
 
 }

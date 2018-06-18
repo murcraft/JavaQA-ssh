@@ -1,6 +1,6 @@
 package by.htp.project.entity;
 
-import by.htp.project.entity.addtables.StopPoint;
+import by.htp.project.entity.points.StopPoint;
 
 public class PassengerTrans extends Transport {
 	
@@ -16,7 +16,6 @@ public class PassengerTrans extends Transport {
 		this.fare = fare;
 		this.capacityOfPeople = capacityOfPeople;	
 	}
-	
 	
 	public String toString() {
 		return name + " | cost: " + cost + "$, " + "fare = " + fare + "$, " + "speedup is " + speedUp + " m/s2, constr. speed = " + constructSpeed + " m/s. Is produced in " + productionDate +
@@ -49,5 +48,4 @@ public class PassengerTrans extends Transport {
 	public boolean isMovie() {
 		return false;
 	}
-	
 }

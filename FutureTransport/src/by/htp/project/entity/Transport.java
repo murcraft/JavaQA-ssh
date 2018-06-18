@@ -1,6 +1,6 @@
 package by.htp.project.entity;
 
-import by.htp.project.entity.addtables.StopPoint;
+import by.htp.project.entity.points.StopPoint;
 
 public abstract class Transport {
 	protected String name;
