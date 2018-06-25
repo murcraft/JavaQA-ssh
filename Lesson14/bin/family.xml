@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<families>
+	<family id = "1">
+		<mother maiden-name="Ivanova">
+			<name>Kate</name>
+			<surname>Petrova</surname>
+			<age>29</age>
+		</mother>
+		<father>
+			<name>Igor</name>
+			<surname>Petrov</surname>
+			<age>25</age>
+			<military />
+		</father>
+		<children>
+			<child>
+				<name>Alesia</name>
+				<surname>Petrova</surname>
+				<age>5</age>
+				<gender></gender>
+			</child>
+			<child>
+				<name>Egor</name>
+				<surname>Petrov</surname>
+				<age>3</age>
+				<gender></gender>
+			</child>
+		</children>
+	</family>
+	
+	<family id = "2">
+		<mother maiden-name="Klimovich">
+			<name>Maria</name>
+			<surname>Jyk</surname>
+			<age>28</age>
+		</mother>
+		<father>
+			<name>Stanislav</name>
+			<surname>Jyk</surname>
+			<age>32</age>
+			<military />
+		</father>
+		<children>
+			<child>
+				<name>Sviatoslav</name>
+				<surname>Jyk</surname>
+				<age>12</age>
+				<gender></gender>
+			</child>
+		</children>
+	</family>
+	
+	<family id = "3">
+		<mother maiden-name="Korobcova">
+			<name>Maria</name>
+			<surname>Prokopik</surname>
+			<age>26</age>
+		</mother>
+		<father>
+			<name>Igor</name>
+			<surname>Prokopik</surname>
+			<age>27</age>
+			<military />
+		</father>
+		<children>
+			<child>
+				<name>Anna</name>
+				<surname>Prokopik</surname>
+				<age>2</age>
+				<gender></gender>
+			</child>
+			<child>
+				<name>Pavel</name>
+				<surname>Prokopik</surname>
+				<age>4</age>
+				<gender></gender>
+			</child>
+			<child>
+				<name>Alina</name>
+				<surname>Prokopik</surname>
+				<age>1</age>
+				<gender></gender>
+			</child>
+		</children>
+	</family>
+</families>
