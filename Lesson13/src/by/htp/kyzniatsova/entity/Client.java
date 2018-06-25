@@ -1,28 +1,33 @@
 package by.htp.kyzniatsova.entity;
 
 import java.util.Date;
+import java.util.TreeMap;
 
-public class Client {
-	private int id;
+public class Client implements Comparable<Client>{
 	private String name;
-	private Date date;
+	private Date dateOfThreat = null;
+	private PredictionResult pr;
+	private int id;
+	
+	private TreeMap <Date, PredictionResult> clientHistory;
+	
 	
 	public Client() {
 	}
 
-	public Client(int id, String name, Date date) {
-		super();
-		this.setId(id);
-		this.setName(name);
-		this.setDate(date);
+	public Client(int id, String name) {
+		this.id = id;
+		this.name = name;
+		this.dateOfThreat = new Date(); //dateOfThreat;
+		
 	}
 
 	public int getId() {
-		return id;
+		return id++;
 	}
 
 	public void setId(int id) {
-		this.id = id;
+		this.id = id + 1;
 	}
 
 	public String getName() {
@@ -33,19 +38,19 @@ public class Client {
 		this.name = name;
 	}
 
-	public Date getDate() {
-		return date;
+	public Date getDateOfThreat() {
+		return dateOfThreat;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setDateOfThreat(Date dateOfThreat) {
+		this.dateOfThreat = dateOfThreat;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((date == null) ? 0 : date.hashCode());
+		result = prime * result + ((dateOfThreat == null) ? 0 : dateOfThreat.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
@@ -60,10 +65,10 @@ public class Client {
 		if (getClass() != obj.getClass())
 			return false;
 		Client other = (Client) obj;
-		if (date == null) {
-			if (other.date != null)
+		if (dateOfThreat == null) {
+			if (other.dateOfThreat != null)
 				return false;
-		} else if (!date.equals(other.date))
+		} else if (!dateOfThreat.equals(other.dateOfThreat))
 			return false;
 		if (id != other.id)
 			return false;
@@ -77,11 +82,17 @@ public class Client {
 
 	@Override
 	public String toString() {
-		return "Client " + id + ", " + name + ", date: " + date;
+		return "Client [id=" + id + ", name=" + name + ", dateOfThreat=" + dateOfThreat + "]";
 	}
-	
-	
-	
-	
+
+	@Override
+	public int compareTo(Client client) {
+		
+		int res = this.dateOfThreat.compareTo(client.dateOfThreat);
+		if(res == 0) {
+			return this.name.compareToIgnoreCase(client.name);
+		}
+		return res;
+	}
 
 }
