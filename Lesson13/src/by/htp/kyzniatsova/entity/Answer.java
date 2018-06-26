@@ -5,20 +5,24 @@ import java.util.List;
 import java.util.Queue;
 
 public class Answer {
+	public static final String targetLove = "Love";
+	public static final String targetFamily = "Family";
+	public static final String targetFuture = "Future";
+	public static final String targetCareer = "Career";
 	
 	private int id;
-	private String answ;
+	private String answer;
 	private Queue<String> quest = null;
 	
 	
 	public Answer() {
 	}
 	
-	public Answer(Target t) {
-		this.id = t.ordinal();
-		this.answ = answ;
-		quest = new LinkedList<String>();
-		quest = showLoveAnswer(id);
+	public Answer(String answer) {
+//		this.id = target.ordinal();
+		this.answer = answer;
+//		quest = new LinkedList<String>();
+//		quest.addAll(showLoveAnswer());
 	}
 
 	
@@ -30,24 +34,18 @@ public class Answer {
 		this.id = id;
 	}
 	
-	public Queue<String> showLoveAnswer(int id){
+/*	public Queue<String> showLoveAnswer(){
 		Queue<String> quest = new LinkedList<String>();
-		if(id == 0) {
+//		if(id == 0) {
+		if(answer.equals(targetLove)) {
 		quest.add("Happy love all life ");
 		quest.add("Love to 3 persons ");
 		quest.add("One love for all life ");
 		quest.add("You'll meet tomorrow ");
 		return quest;
 		}
-	
-		if(id == 1) {
-			quest.add("You will have been living 100 years ");
-			quest.add("You will get rescue ");
-			quest.add("You will transform your body ");
-			quest.add("You won't die ");
-		return quest;
-		}
-		if(id == 2) {
+
+		if(answer.equals(targetFamily)) {
 			quest.add("You will have been always get together ");
 			quest.add("Happy family all life ");
 			quest.add("You will have 5 children ");
@@ -55,7 +53,8 @@ public class Answer {
 		return quest;
 	}
 	
-		if(id == 3) {
+//		if(id == 3) {
+			if(answer.equals(targetCareer)) {
 			quest.add("You will be a famous programmer ");
 			quest.add("You will work for Google ");
 			quest.add("You will deserve a promotion ");
@@ -63,7 +62,8 @@ public class Answer {
 		return quest;
 	}
 	
-		if(id == 4) {
+//		if(id == 4) {
+		if(answer.equals(targetFuture)) {
 		quest.add("You will have been living 100 years ");
 		quest.add("You will get rescue ");
 		quest.add("You will transform your body ");
@@ -82,10 +82,10 @@ public class Answer {
 	}
 		return quest;
 	}
-
-	@Override
+*/
+//	@Override
 	public String toString() {
-		return quest.toString();
+		return answer;
 	}
 
 	

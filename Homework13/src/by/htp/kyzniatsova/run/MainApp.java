@@ -45,6 +45,7 @@ public class MainApp {
 		
 
 		Prediction keyOb = getKeyForUser(pr, keys);
+		
 		System.out.println(fortuneTellers.get(keyOb).poll());
 
 		

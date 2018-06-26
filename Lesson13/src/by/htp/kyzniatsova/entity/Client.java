@@ -1,6 +1,7 @@
 package by.htp.kyzniatsova.entity;
 
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.TreeMap;
 
 public class Client implements Comparable<Client>{
@@ -19,6 +20,7 @@ public class Client implements Comparable<Client>{
 		this.id = id;
 		this.name = name;
 		this.dateOfThreat = new Date(); //dateOfThreat;
+		
 		
 	}
 

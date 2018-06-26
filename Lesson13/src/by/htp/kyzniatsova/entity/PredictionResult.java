@@ -6,7 +6,15 @@ public class PredictionResult {
 	String val;
 	
 	public PredictionResult(Prediction prediction, Answer answer) {
-//		val = prediction(Target tar) + answer;
+		this.prediction = prediction;
+		this.answer = answer;
 	}
+
+	@Override
+	public String toString() {
+		return "PredictionResult " + prediction + " answe " + answer;
+	}
+	
+	
 
 }

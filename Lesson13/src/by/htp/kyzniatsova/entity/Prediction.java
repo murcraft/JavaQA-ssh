@@ -5,23 +5,23 @@ import java.io.Serializable;
 public class Prediction implements Serializable {
 
 	private static final long serialVersionUID = 7497634881040094934L;
-	private Target target;
+	private String target;
 
 
 	public Prediction() {
 		super();
 	}
 
-	public Prediction(Target target) {
+	public Prediction(String target) {
 		
 		this.target = target;
 	}
 
-	public Target getTarget() {
+	public String getTarget() {
 		return target;
 	}
 
-	public void setTarget(Target target) {
+	public void setTarget(String target) {
 		this.target = target;
 	}
 
@@ -52,8 +52,10 @@ public class Prediction implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Prediction: " + target + " ";
+		return "Prediction: " + target;
 	}
+
+
 	
 	
 	

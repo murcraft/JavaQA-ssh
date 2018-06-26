@@ -1,6 +1,9 @@
 package by.htp.kyzniatsova.run;
 
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Queue;
@@ -8,61 +11,131 @@ import java.util.Set;
 import java.util.PriorityQueue;
 import by.htp.kyzniatsova.entity.Answer;
 import by.htp.kyzniatsova.entity.Client;
+import by.htp.kyzniatsova.entity.ClientDate;
 import by.htp.kyzniatsova.entity.Prediction;
+import by.htp.kyzniatsova.entity.PredictionResult;
 import by.htp.kyzniatsova.entity.Target;
 import by.htp.kyzniatsova.logic.Methods;
 
 public class FortuneTeller {
+	public static final String targetLove = "Love";
+	public static final String targetFamily = "Family";
+	public static final String targetFuture = "Future";
+	public static final String targetCareer = "Career";
 
 	public static void main(String[] args) {
-		
-		
-		Methods.showMenu();
+
+		String name = Methods.chooseUserUser();
+		System.out.println("Hello, " + name);
+		Methods.printMenu();
 		Methods.calculatePredictionList();
 
-		String value = Methods.chooseUserPrediction();;
+		int value = Methods.chooseUserPrediction();;
 		System.out.println(value);
+		
+		//------------------------------------------------------------------
 
-		Answer answersLove = new Answer(Target.LOVE);
-		Answer answersDie = new Answer(Target.DIE);
-		Answer answersFamily = new Answer(Target.FAMILY);
-		Answer answersCareer = new Answer(Target.CAREER);
-		Answer answersFuture = new Answer(Target.FUTURE);
-		Answer answersPets = new Answer(Target.PETS);	
-		
-//		System.out.println(answersLove.showLoveAnswer(Target.LOVE.ordinal()).peek());
-		
-
-		Map<Prediction, Answer> predict = new LinkedHashMap<>();
-		
-		predict.put(new Prediction(Target.LOVE), answersLove);
-		predict.put(new Prediction(Target.DIE),   answersDie);
-		predict.put(new Prediction(Target.FAMILY),  answersFamily);
-		predict.put(new Prediction(Target.CAREER),  answersCareer);
-		predict.put(new Prediction(Target.FUTURE),  answersFuture);
-		predict.put(new Prediction(Target.PETS),  answersPets);
-
-		Set <Entry<Prediction, Answer>> entry = predict.entrySet(); // множество пар ключ-значение
-		Set <Prediction> keys = predict.keySet();// получили набор ключей 
-//		
-		if(value.equalsIgnoreCase("LOVE")) {
-			System.out.println(answersLove.showLoveAnswer(Target.LOVE.ordinal()).remove());
-			System.out.println(answersLove);
-		}
-		
-		System.out.println("--------------");
+		Queue<Answer> answersLove = new LinkedList<Answer>();
+		answersLove.add(new Answer("Happy love all life "));
+		answersLove.add(new Answer("Love to 3 persons "));
+		answersLove.add(new Answer("One love for all life "));
 	
 		
+		Queue<Answer> answersFuture = new LinkedList<Answer>();
+		answersFuture.add(new Answer("You will have been living 100 years "));
+		answersFuture.add(new Answer("You will get rescue "));
+		answersFuture.add(new Answer("You will transform your body "));
 		
-		System.out.println(predict.remove(Target.LOVE, answersLove.showLoveAnswer(Target.LOVE.ordinal()).poll()));
-		System.out.println(predict.remove(Target.LOVE, answersLove.showLoveAnswer(Target.LOVE.ordinal()).poll()));
-		System.out.println(predict.remove(Target.LOVE, answersLove.showLoveAnswer(Target.LOVE.ordinal()).poll()));
-			
-		for (Map.Entry entry1 : predict.entrySet()) {
+		Queue<Answer> answersFamily = new LinkedList<Answer>();
+		answersFamily.add(new Answer("You will have been always get together "));
+		answersFamily.add(new Answer("Happy family all life "));
+		answersFamily.add(new Answer("You will have 5 children "));
 		
+		Queue<Answer> answersCareer = new LinkedList<Answer>();
+		answersCareer.add(new Answer("You will be a famous programmer "));
+		answersCareer.add(new Answer("You will work for Google "));
+		answersCareer.add(new Answer("You will deserve a promotion "));
+
+
+	
+		
+//-----------------------------------------------------------------------------------
+		HashMap<Prediction, Queue<Answer>> predict = new LinkedHashMap<Prediction, Queue<Answer>>();
+		
+		predict.put(new Prediction(targetLove), answersLove);
+		predict.put(new Prediction(targetFamily),  answersFuture);
+		predict.put(new Prediction(targetFuture),  answersFamily);
+		predict.put(new Prediction(targetCareer),  answersCareer);
+
+//---------------------------------------------------------------------		
+		
+		String valueUserChoise = Methods.getTargetValue(value);
+		
+//		System.out.println(valueUserChoise);
+//		
+		if(valueUserChoise.equals("-1")) {
+			System.out.println("Error value, try again");
+		}
+		
+//		String valueUserChoise = "Love";
+		Prediction pr = new Prediction(valueUserChoise);
+		
+		
+	//-----------------------------------------------------------------
+		
+		Set <Entry<Prediction, Queue<Answer>>> entry = predict.entrySet(); // множество пар ключ-значение
+		Set <Prediction> keys = predict.keySet();// получили набор ключей 
+	
+		Prediction keyOb = getKeyForUser(pr, keys);
+		
+		Answer answerForUser = predict.get(keyOb).poll();
+		System.out.println(answerForUser);
+		predict.get(keyOb).add(answerForUser);
+		
+		
+//-------------------------------------------------------------------------------
+		Map <ClientDate, PredictionResult> resultHistory = new HashMap <ClientDate, PredictionResult>();
+		resultHistory.put(new ClientDate(), new PredictionResult(keyOb, answerForUser));
+		
+		for (Map.Entry entry1 : resultHistory.entrySet()) {
 		    System.out.println(entry1.getKey() + ", " + entry1.getValue());
 		}
 		
+
+//-------------------------------------------------------------------------------		
+		System.out.println("--------------");
+		
+		for (Map.Entry entry2 : predict.entrySet()) {
+		
+		    System.out.println(entry2.getKey() + ", " + entry2.getValue());
+		}
+		
+		//----------------------------------------------
+
+		
+		
+		
+		System.out.println("--------------");
+		
+
+		
+//		Prediction keyOb = getKeyForUser(pr, keys);
+		
+		
+		System.out.println("--------------");
+		
+//		for (Map.Entry entry2 : predict.entrySet()) {
+//		    System.out.println(entry2.getKey() + ", " + entry2.getValue());
+//		}
+////		
+//		for(Prediction i : keys) {
+//			if(i.equals(pr)) {
+//			
+//			}
+//		}
+//	
+		
+		//------------------------------------------
 	
 
 		Queue<Client> clientsQueue = new PriorityQueue<Client>(10);
@@ -82,13 +155,47 @@ public class FortuneTeller {
 			System.out.println(cl);
 		}
 		
-		
-		
-		
 
 		
-		
 
+	}
+	
+	public static Queue<Answer> initAnswLove(){
+		Queue<Answer> answersLove = new LinkedList<Answer>();
+		answersLove.add(new Answer("Happy love all life "));
+		answersLove.add(new Answer("Love to 3 persons "));
+		answersLove.add(new Answer("One love for all life "));
+		
+		return answersLove;
+	}
+	
+	public static Answer initAnswersLove() {
+		Answer answers = new Answer(targetLove);
+		return answers;
+	}
+	
+	public static Answer initAnswersFamily() {
+		Answer answers = new Answer(targetFamily);
+		return answers;
+	}
+	
+	public static Answer initAnswersFuture() {
+		Answer answers = new Answer(targetFuture);
+		return answers;
+	}
+	
+	public static Answer initAnswersCareer() {
+		Answer answers = new Answer(targetCareer);
+		return answers;
+	}
+	
+	public static Prediction getKeyForUser(Prediction pr, Set <Prediction> keys) {
+		for(Prediction i : keys) {
+			if(i.equals(pr)) {
+				return i;
+			}
+		}
+		return null;
 	}
 
 }

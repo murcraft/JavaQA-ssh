@@ -3,6 +3,11 @@ package by.htp.kyzniatsova.entity;
 import java.util.Queue;
 
 public class AnswerQueue {
+	public static final String targetLove = "Love";
+	public static final String targetFamily = "Family";
+	public static final String targetFuture = "Future";
+	public static final String targetCareer = "Career";
+	
 	Answer answ = null;
 
 	public Queue<Answer> queueAnsw = null;
@@ -12,12 +17,10 @@ public class AnswerQueue {
 	}
 
 	public AnswerQueue(Target t) {
-		queueAnsw.offer(new Answer(Target.LOVE));
-		queueAnsw.offer(new Answer(Target.DIE));
-		queueAnsw.offer(new Answer(Target.FAMILY));
-		queueAnsw.offer(new Answer(Target.CAREER));
-		queueAnsw.offer(new Answer(Target.FUTURE));
-		queueAnsw.offer(new Answer(Target.PETS));
+		queueAnsw.offer(new Answer(targetLove));
+		queueAnsw.offer(new Answer(targetFamily));
+		queueAnsw.offer(new Answer(targetFuture));
+		queueAnsw.offer(new Answer(targetCareer));
 	}
 
 	@Override
