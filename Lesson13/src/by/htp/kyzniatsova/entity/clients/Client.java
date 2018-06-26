@@ -1,13 +1,16 @@
-package by.htp.kyzniatsova.entity;
+package by.htp.kyzniatsova.entity.clients;
 
+import java.io.Serializable;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.TreeMap;
 
-public class Client implements Comparable<Client>{
+import by.htp.kyzniatsova.entity.prediction.PredictionResult;
+
+public class Client implements Serializable, Comparable<Client> {
+	
+	private static final long serialVersionUID = 2034764743257592692L;
 	private String name;
-	private Date dateOfThreat = null;
-	private PredictionResult pr;
+	private ClientDate dateOfThreat = null;
 	private int id;
 	
 	private TreeMap <Date, PredictionResult> clientHistory;
@@ -17,11 +20,9 @@ public class Client implements Comparable<Client>{
 	}
 
 	public Client(int id, String name) {
-		this.id = id;
+		this.id = id++;
 		this.name = name;
-		this.dateOfThreat = new Date(); //dateOfThreat;
-		
-		
+		this.dateOfThreat = new ClientDate(); //dateOfThreat;
 	}
 
 	public int getId() {
@@ -40,11 +41,11 @@ public class Client implements Comparable<Client>{
 		this.name = name;
 	}
 
-	public Date getDateOfThreat() {
+	public ClientDate getDateOfThreat() {
 		return dateOfThreat;
 	}
 
-	public void setDateOfThreat(Date dateOfThreat) {
+	public void setDateOfThreat(ClientDate dateOfThreat) {
 		this.dateOfThreat = dateOfThreat;
 	}
 
@@ -84,17 +85,16 @@ public class Client implements Comparable<Client>{
 
 	@Override
 	public String toString() {
-		return "Client [id=" + id + ", name=" + name + ", dateOfThreat=" + dateOfThreat + "]";
+		return "Client № " + id + ", " + name + ", " + dateOfThreat;
 	}
 
-	@Override
 	public int compareTo(Client client) {
 		
-		int res = this.dateOfThreat.compareTo(client.dateOfThreat);
-		if(res == 0) {
-			return this.name.compareToIgnoreCase(client.name);
+		int result = this.name.compareTo(client.getName());
+		if(result == 0){
+			return this.id - client.getId();
 		}
-		return res;
+		return 0;
 	}
 
 }

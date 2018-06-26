@@ -1,6 +1,8 @@
-package by.htp.kyzniatsova.entity;
+package by.htp.kyzniatsova.entity.answer;
 
 import java.util.Queue;
+
+import by.htp.kyzniatsova.entity.prediction.Target;
 
 public class AnswerQueue {
 	public static final String targetLove = "Love";

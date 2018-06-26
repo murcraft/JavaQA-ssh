@@ -1,4 +1,4 @@
-package by.htp.kyzniatsova.entity;
+package by.htp.kyzniatsova.entity.prediction;
 
 import java.io.Serializable;
 
@@ -7,13 +7,11 @@ public class Prediction implements Serializable {
 	private static final long serialVersionUID = 7497634881040094934L;
 	private String target;
 
-
 	public Prediction() {
 		super();
 	}
 
 	public Prediction(String target) {
-		
 		this.target = target;
 	}
 
@@ -55,9 +53,4 @@ public class Prediction implements Serializable {
 		return "Prediction: " + target;
 	}
 
-
-	
-	
-	
-	
 }
