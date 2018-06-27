@@ -15,14 +15,13 @@ public class Client implements Serializable, Comparable<Client> {
 	
 	private TreeMap <Date, PredictionResult> clientHistory;
 	
-	
 	public Client() {
 	}
 
 	public Client(int id, String name) {
 		this.id = id++;
 		this.name = name;
-		this.dateOfThreat = new ClientDate(); //dateOfThreat;
+		this.dateOfThreat = new ClientDate();
 	}
 
 	public int getId() {

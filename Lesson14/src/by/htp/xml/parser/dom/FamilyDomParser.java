@@ -2,7 +2,9 @@ package by.htp.xml.parser.dom;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -14,73 +16,119 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import by.htp.xml.entity.Child;
 import by.htp.xml.entity.Families;
 import by.htp.xml.entity.Family;
+import by.htp.xml.entity.Father;
+import by.htp.xml.entity.Mother;
+import by.htp.xml.entity.Person;
 import by.htp.xml.parser.FamilyParser;
 
-public class FamilyDomParser implements FamilyParser {
+public class FamilyDomParser /*implements FamilyParser*/ {
+	
+	private DocumentBuilder documentBuilder;
+
+	private Set<Family> families;
+	
+	public FamilyDomParser() {
+		this.families  = new HashSet<Family>();
+		DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance(); //можно создавать только один раз синглтон, new не пишем ротому что конструктор закрыт
+		try {
+			documentBuilder = builderFactory.newDocumentBuilder();
+		} catch(ParserConfigurationException e) {
+			System.out.println("Configuration error of parser: " + e);
+		}
+	}
+	
+	public Set<Family> getFamilies() {
+		return families;
+	}
+
+	public void setFamilies(Set<Family> families) {
+		this.families = families;
+	}
 	
 	public Families parseFamilyDoc(String path) {
-		
-		DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance(); //можно создавать только один раз синглтон, new не пишем ротому что конструктор закрыт
+		Document document = null;
 		
 		try {
-			DocumentBuilder documentBuilder = builderFactory.newDocumentBuilder();
-			Document document = documentBuilder.parse(path);
+			// создание DOM-анализатора
+			document = documentBuilder.parse(path);
+//			DocumentBuilder documentBuilder = builderFactory.newDocumentBuilder();
+						
+			Element root = document.getDocumentElement();
+			System.out.println("Document root: " + root.getTagName());
 			
-			Element element = document.getDocumentElement();
-			System.out.println("Document element: " + element.getTagName());
-			
-			List<Family> families = new ArrayList<Family>();
-			
-			NodeList childNodes = element.getElementsByTagName("family");
-			Family family = null;
-			
+			// получение списка дочерних элементов
+			NodeList childNodes = root.getElementsByTagName("family");
 			
 			for (int i = 0; i < childNodes.getLength(); i++) {
-				family = new Family();
-//				Node node = childNodes.item(i);
-				Element node1 = (Element)childNodes.item(i);
-				Element mother =  (Element)node1.getElementsByTagName("mother").item(i);
+
+				Element familyElem = (Element)childNodes.item(i);
 				
-				System.out.println("Node: " + ((Element)node1).getTagName() + " " + mother);
+//				NodeList childMin = familyElem.getElementsByTagName("mother");
+//				System.out.println(childMin.toString());
+//				
+//				NodeList childFath = familyElem.getElementsByTagName("father");
+//				System.out.println(childFath.toString());
 				
+				Family family = buildFamily(familyElem);
+				families.add(family);
 			}
-			
-//			for (int i = 0; i < studentsList.getLength(); i++) {
-//				Element studentElement = (Element) studentsList.item(i);
-//				Student student = buildStudent(studentElement);
-//				students.add(student);
-//				}
-			
-		/*	NodeList motherNodes = element.getElementsByTagName("mother");
-			for (int i = 0; i < motherNodes.getLength(); i++) {
-				Node node = motherNodes.item(i);
-				System.out.println("Node: " + ((Element)node).getTagName());
-			
+
+	
+			/*	
+				Node node = childNodes.item(i);
+				if(node.getNodeType() != Node.TEXT_NODE) {
+					NodeList mothers = node.getChildNodes();
+					for(int j = 0; j < mothers.getLength(); j++) {
+						Node motherEl = mothers.item(j);
+						if(motherEl.getNodeType() != Node.TEXT_NODE) {
+							NodeList children = node.getChildNodes();
+//							System.out.println(motherEl.getNodeName() + ");// : " + motherEl.getChildNodes().item(0).getTextContent());
+						for(int k = 0; k < children.getLength(); k++) {
+							Node child = mothers.item(k);
+							if(child.getNodeType() != Node.TEXT_NODE) {
+								System.out.println( child.getNodeName() + " : " + child.getChildNodes().item(0).getTextContent());
+							}
+						}
+
+						}
+					}
+					System.out.println("======================>");
+				}
 			}
+		*/	
 			
-			NodeList fatherNodes = element.getElementsByTagName("father");
-			for (int i = 0; i < fatherNodes.getLength(); i++) {
-				Node node = fatherNodes.item(i);
-				System.out.println("Node: " + ((Element)node).getTagName());
-			
-			}
-			
-			NodeList childrenNodes = element.getElementsByTagName("child");
-			for (int i = 0; i < childrenNodes.getLength(); i++) {
-				Node node = childrenNodes.item(i);
-				System.out.println("Node child: " + ((Element)node).getTagName());
-			}
-			*/
-		
-			
-			System.out.println();
-			
-		} catch (ParserConfigurationException | SAXException | IOException e) {
+		} catch (SAXException | IOException e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
 
+	
+	public Family buildFamily(Element familyElem) {
+		Family family = new Family();
+
+		// заполнение объекта Family
+		family.setId(Integer.parseInt(familyElem.getAttribute("id")));
+		
+//		Mother mother = family.getMother();
+//		Element motherElement = (Element)familyElem.getElementsByTagName("mother").item(0);
+//		mother.setName(getSingleChild(motherElement, "name"));
+//		mother.setSurname(getSingleChild(motherElement, "surname"));
+//		mother.setAge(Integer.parseInt(getSingleChild(motherElement, "age")));
+		
+	return family;
+	}
+	
+	
+	public static String getSingleChild(Element element, String childName) {
+		NodeList nList = element.getElementsByTagName(childName);
+		Node child = nList.item(0);
+		String text = child.getTextContent();
+		return text;
+	}
+
 }
+

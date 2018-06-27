@@ -10,12 +10,21 @@ import by.htp.kyzniatsova.entity.prediction.Target;
 
 public class Methods {
 	
+	
+	public static String getUserName() {
+		System.out.println("Hello, are you ready to look into the future?");
+		System.out.println("Enter your name");
+		Scanner scan = new Scanner(System.in);
+		String option = scan.nextLine();
+		return option;
+	}
+	
 	public static void printMenu() {
 		System.out.println("Enter 1 to look at prediction list and consult a fortuneteller;");
 		System.out.println("Enter 2 to exit.");
 	}
 	
-	public static void calculatePredictionList(){
+	public static void calculateUserChoise(){
 			int option = chooseUserOption();
 			System.out.println(option);
 			switch (option) {
@@ -28,14 +37,37 @@ public class Methods {
 				break;
 			default:
 				System.out.println("Wrong value, try again");
+				calculateUserChoise();
 				break;
 			}
 	}
 	
-	public static String getTargetValue(int position) {
-		if(position <= 0 || position >4) {
-			return "-1";
+	public static void calculatePredictionList(){
+		int option = getUserPrediction();
+		System.out.println(option);
+		switch (option) {
+		case 1:
+			getPredictionValue(1);
+			break;
+		case 2:
+			getPredictionValue(2);
+			break;
+		case 3:
+			getPredictionValue(3);
+			break;
+		case 4:
+			getPredictionValue(4);
+			break;
+		default:
+			System.out.println("Wrong value, try again");
+			getUserPrediction();
+			break;
 		}
+}
+
+	
+	public static String getPredictionValue(int position) {
+
 		switch(position) {
 		case 1:
 			return "Love";
@@ -52,19 +84,30 @@ public class Methods {
 			return "-1";
 		}
 	}
+	
+	
+	public static void checkValuePredictionUSer(int value) {
+		if(value < 0 || value > 4) {
+			System.out.println("Error value, try again");
+			 getUserPrediction();
+		}
+	}
 
 	public static void showPredictions() {
-		System.out.printf("%7d |%7d |%7d |%7d |", 1, 2, 3, 4);
+		System.out.println("------------------------------------");
+		System.out.printf("%7d |%7d |%7d |%7d ", 1, 2, 3, 4);
 		System.out.println();
-		System.out.printf("%7s |%7s |%7s |%7s |", Target.LOVE, Target.FAMILY, Target.FUTURE, Target.CAREER);
+		System.out.println("------------------------------------");
+		System.out.printf("%7s |%7s |%7s |%7s ", Target.LOVE, Target.FAMILY, Target.FUTURE, Target.CAREER);
 		System.out.println();
-		System.out.println();
-		System.out.println("Enter according number of target");
-		System.out.println("--->");
+		System.out.println("------------------------------------");
+		
+		System.out.println("Enter the appropriate numerical value:");
+
 	}
 	
 	public static void choiseUser() {
-		System.out.println("Choose one of the points to fortune-telling");
+		System.out.println("I propose you next predictions:");
 		showPredictions();
 
 	}
@@ -83,19 +126,23 @@ public class Methods {
 		return -1;
 	}
 	
-	public static int chooseUserPrediction() {
+	public static int getUserPrediction() {
 		Scanner scan = new Scanner(System.in);
 		int option = scan.nextInt();
-		return option;
-		
+		if(option < 0 || option > 4) {
+			System.out.println("Error value, try again");
+			getUserPrediction();
+			return 1;
+		} else {
+			return option;
+		}
 	}
-	
-	public static String getUserName() {
-		System.out.println("Hello, are you ready to look into the future?");
-		System.out.println("Enter your name");
-		Scanner scan = new Scanner(System.in);
-		String option = scan.nextLine();
-		return option;
+		
+	public static void printEndText() {
+		System.out.println("--------------------------------------------------------");
+		System.out.println("The queue is full");
+		System.out.println("Thanks, bye!!");
+		System.out.println("--------------------------------------------------------");
 	}
 
 }
