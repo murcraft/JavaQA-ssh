@@ -1,6 +1,7 @@
 package by.htp.xml.parser.sax.entity;
 
 public class Child extends Person {
+	
 	private String gender;
 
 	public Child() {
@@ -22,6 +23,11 @@ public class Child extends Person {
 
 	public void setGender(String gender) {
 		this.gender = gender;
+	}
+
+	@Override
+	public String toString() {
+		return getName() + " " + getSurname() + ", age: " + getAge() + gender + " ";
 	}
 	
 	

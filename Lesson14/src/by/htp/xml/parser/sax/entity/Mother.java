@@ -25,4 +25,12 @@ public class Mother extends Person {
 		this.maidenName = maidenName;
 	}
 
+	@Override
+	public String toString() {
+		return "" + maidenName + " -Mname, " +  getName() + " " + getSurname() + ", age: " + getAge();
+	}
+	
+	
+	
+
 }

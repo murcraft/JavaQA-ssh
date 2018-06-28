@@ -19,129 +19,162 @@ import by.htp.xml.parser.sax.entity.Person;
 
 public class FamilySaxHandler extends DefaultHandler {
 	
-	private Set<List<Family>> familySet = null;
-	private List<Family> familyList = null;
-	
+	private List<Family> familyL = new ArrayList<Family>();
+	private Family family = null;
 	private Person person = null;
 	private Mother mother = null;
 	private Father father = null;
 	private Child child = null;
+	private StringBuilder text;
+	private Person current;
 	
 	private FamilyEnum currentEnum = null;
 	private EnumSet<FamilyEnum> withText;
 
+//	
+//	public FamilySaxHandler() {
+//		familySet = new HashSet<Family>();
+//		withText = EnumSet.range(FamilyEnum.NAME, FamilyEnum.GENDER);
+//	}
 	
-	public FamilySaxHandler() {
-		familySet = new HashSet<List<Family>>();
-		withText = EnumSet.range(FamilyEnum.NAME, FamilyEnum.GENDER);
+	public List<Family> getFamilySet(){
+		return familyL;
 	}
-	
-	public Set<List<Family>> getFamilySet(){
-		return familySet;
-	}
-	
-	public List<Family> getFamilyList(){
-		return familyList;
-	}
+
 
 	@Override
 	public void startDocument() throws SAXException {
-//		System.out.println("startDocument()");
-	}
-
-	@Override
-	public void endDocument() throws SAXException {
-//		System.out.println("endDocument()");
-	}
-
-	@Override
-	public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
-/*		System.out.println("startElement()");
-		switch(localName) {
-		case "mother":
-			System.out.println("****M" + localName);
-			break;
-		case "father":
-			System.out.println("*****F" + localName);
-			break;
-		}
-*/
-		person = new Person();
-		mother = new Mother();
-		father = new Father();
-		child = new Child();
-		if("family".equals(localName)) {
-			familyList = new ArrayList<Family>();
-			int n = (Integer.parseInt(attributes.getValue("id")));
-			System.out.println("----------------");
-			System.out.println("|" + localName + " id = " + n + " |");
-			System.out.println("----------------");
-		} else if("mother".equals(localName)) {
-//			person = new Mother();
-			/*((Mother) person)*/mother.setMaidenName(attributes.getValue("maiden-name"));
-			System.out.println(localName);
-		} else if("father".equals(localName)) {
-//			person = new Father();
-			System.out.println(localName);
-		} else if("child".equals(localName)) {
-//			person = new Child();
-			System.out.println(localName);
-		} else {
-			FamilyEnum temp = FamilyEnum.valueOf(localName.toUpperCase());
-			if(withText.contains(temp)) {
-				currentEnum = temp;
-			}
-			
-		}
-	}
-
-	@Override
-	public void endElement(String uri, String localName, String qName) throws SAXException {
-//		System.out.println("endElement");
-		if("family".equals(localName)) {
-			familySet.add(familyList);
-		}
+		System.out.println("Parsing is started");
 		
 	}
 
 	@Override
-	public void characters(char[] ch, int start, int length) throws SAXException {
-//		System.out.println("characters: " + new StringBuilder().append(characters, start, length));
-		String s = new String(ch, start, length).trim();
-		if(currentEnum != null) {
-			switch(currentEnum) {
-			case NAME:
-				person.setName(s);	
-				System.out.println("name: " + s);
-				break;
-			case SURNAME:
-				person.setSurname(s);
-				System.out.println("surname: " + s);
-				break;	
-			case AGE:
-				person.setAge(Integer.parseInt(s));
-				System.out.println("age: " + s);
-				break;
-			case MILITARY:
-				father.setMilitary(s);
-				System.out.println("military: " + s);
-				break;
-			case GENDER:
-				child.setGender(s);
-				System.out.println("gender: " + s);
-				break;
-				default:
-					throw new EnumConstantNotPresentException(currentEnum.getDeclaringClass(), currentEnum.name());
-			}
-//			System.out.println("characters: " + new StringBuilder().append(ch, start, length));
+	public void endDocument() throws SAXException {
+		System.out.println(familyL);
+		System.out.println("Parsing is ended");
+	}
+
+	@Override
+	public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+//		System.out.println("startElement " + localName);
+		text = new StringBuilder();
+		
+		if(qName.equals("family")) {
+			family = new Family();
+			family.setId(Integer.parseInt(attributes.getValue("id")));
+			System.out.println(qName);
 		}
-		currentEnum = null;
+		
+		if(localName.equals("mother")) {
+			current = new Mother();
+//			family.setMother(mother);
+			String maidenName= attributes.getValue("maiden-name");
+			((Mother) current).setMaidenName(maidenName);
+			family.setMother((Mother) current);
+			System.out.println(qName + "[maiden name: " + maidenName + "]");
+		}
+		
+		if(qName.equals("father")) {
+			current = new Father();
+			family.setFather((Father) current);
+			System.out.println(qName);
+		}
+		
+		if(qName.equals("child")) {
+			current = new Child();
+			family.setChild((Child) current);
+			System.out.println(qName);
+		}
+
+	}
+
+	public void characters(char[] ch, int start, int length) throws SAXException {
+//		System.out.println("characters: " + new StringBuilder().append(ch, start, length));
+		text.append(ch, start, length);
+	}
+
+
+	public void endElement(String uri, String localName, String qName) throws SAXException {
+		FamilyEnum tags = FamilyEnum.valueOf(qName.toUpperCase().replace("-", "_"));
+		
+		switch(tags) {
+		case NAME:
+			current.setName(text.toString());
+//				family.getMother().setName(text.toString());
+//				System.out.println(mother);
+//	
+//			if(current.equals(father)) {
+//				family.getFather().setName(text.toString());
+//			}
+//			if(current.equals(child)) {
+//				family.getChild().setName(text.toString());
+//			}
+			System.out.println("name:  " + text.toString());
+		break;
+		case SURNAME:
+			current.setSurname(text.toString());
+//			if(current.equals(mother)) {
+//				family.getMother().setSurname(text.toString());	
+//			}
+//			if(current.equals(father)) {
+//				family.getFather().setSurname(text.toString());	
+//			}
+//			if(current.equals(child)) {
+//				family.getChild().setSurname(text.toString());	
+//			}
+				System.out.println("surname: " + text.toString());
+			break;	
+		case AGE:
+			current.setAge(Integer.parseInt(text.toString()));
+//			if(current.equals(mother)) {
+//				family.getMother().setAge(Integer.parseInt(text.toString()));
+//			}
+//			if(current.equals(father)) {
+//				family.getFather().setAge(Integer.parseInt(text.toString()));
+//			}
+//			if(current.equals(child)) {
+//				family.getChild().setAge(Integer.parseInt(text.toString()));
+//			}
+			
+			System.out.println("age: " + text.toString());
+		break;
+		case MILITARY:
+			current.setMilitary(text.toString());
+//			family.getFather().setMilitary(text.toString());
+			
+			System.out.println(text.toString());
+		break;
+		case GENDER:
+			 current.setGender(text.toString());
+//			family.getChild().setGender(text.toString());
+			
+			System.out.println(text.toString());
+		break;
+		case MOTHER:
+			mother = (Mother) current;
+			family.setMother(mother);
+			current = mother;
+		break;
+		case FATHER:
+			father = (Father) current;
+			family.setFather(father);
+		break;
+		case CHILD:
+			child = (Child) current;
+			family.setChild(child);
+		break;
+			
+		case FAMILY:
+
+			System.out.println(familyL);
+			familyL.add(family);
+			family = null;
+		break;
+		}
+		
 	}
 	
-	public void printFamily(Set<List<Family>> familySet) {
-		for(int i = 0; i < familySet.size(); i++) {
-			System.out.println(familySet.toString());
-		}
-	}
+
+
 
 }

@@ -24,6 +24,11 @@ public class Father extends Person {
 	public void setMilitary(String military) {
 		this.military = military;
 	}
+
+	@Override
+	public String toString() {
+		return getName() + " " + getSurname() + ", age: " + getAge() + military + " ";
+	}
 	
 	
 
