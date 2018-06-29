@@ -8,7 +8,7 @@ public class Family {
 	private int id;
 	private Mother mother;
 	private Father father;
-	private List<Child> children;
+	private Child child;
 
 
 	public Family() {
@@ -18,7 +18,7 @@ public class Family {
 		this.setId(id);
 		this.mother = new Mother();
 		this.father = new Father();
-		this.children = new ArrayList<Child>();
+		this.child = new Child();
 	}
 
 	public int getId() {
@@ -45,17 +45,17 @@ public class Family {
 		this.father = father;
 	}
 
-	public List<Child> getChildren() {
-		return children;
+	public Child getChild() {
+		return child;
 	}
 
-	public void setChildren(List<Child> children) {
-		this.children = children;
+	public void setChild(Child child) {
+		this.child = child;
 	}
 
 	@Override
 	public String toString() {
-		return "Family [id=" + id + ", mother=" + mother + ", father=" + father + ", children=" + children + "]";
+		return "Family [id=" + id + ", mother=" + mother + ", father=" + father + ", children=" + child + "]";
 	}
 
 	
