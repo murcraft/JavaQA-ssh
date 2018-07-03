@@ -114,15 +114,8 @@ public class FamilyDomParser /*implements FamilyParser*/ {
 	
 	public Family buildFamily(Element familyElem) {
 		Family family = new Family();
-
-		// заполнение объекта Family
-		family.setId(Integer.parseInt(familyElem.getAttribute("id")));
 		
-//		Mother mother = family.getMother();
-//		Element motherElement = (Element)familyElem.getElementsByTagName("mother").item(0);
-//		mother.setName(getSingleChild(motherElement, "name"));
-//		mother.setSurname(getSingleChild(motherElement, "surname"));
-//		mother.setAge(Integer.parseInt(getSingleChild(motherElement, "age")));
+		family.setId(Integer.parseInt(familyElem.getAttribute("id")));
 		
 	return family;
 	}

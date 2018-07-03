@@ -16,7 +16,7 @@ private String military;
 		this.setMilitary(military);
 	}
 
-	public String isMilitary() {
+	public String getMilitary() {
 		return military;
 	}
 
